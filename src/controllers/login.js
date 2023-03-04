@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
             algorithm: 'HS256',
           };
 
-          const token = jwt.sign({ data: { emailId: emailLogin.id } }, secret, jwtConfig);
+        const token = jwt.sign({ data: { emailId: emailLogin.id } }, secret, jwtConfig);
 
         res.status(200).json({ token });
     } catch (err) {
