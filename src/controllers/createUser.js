@@ -1,4 +1,3 @@
-require('dotenv/config');
 const { createToken } = require('../auth/createTokenJWT');
 const { userService } = require('../services');
 
@@ -59,10 +58,12 @@ module.exports = async (req, res) => {
 
         await userService.createUser({ email, password, displayName, image });
 
-        const { password: _, ...userWithoutPassword } = emailExist.dataValues;
+        const generateToken = await userService.getByEmail(email);
+
+        const { password: _, ...userWithoutPassword } = generateToken.dataValues;
 
         const token = createToken(userWithoutPassword);
-
+ 
         res.status(201).json({ token });
     } catch (err) {
         return res
