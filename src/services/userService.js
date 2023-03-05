@@ -22,6 +22,8 @@ const createCategory = ({ name }) => Category.create({ name });
 
 const getIdByCategoryName = (name) => Category.findOne({ where: { name } });
 
+const getCategories = () => Category.findAll();
+
 module.exports = {
     createUser,
     getByEmail,
@@ -29,4 +31,5 @@ module.exports = {
     getByUserId,
     createCategory,
     getIdByCategoryName,
+    getCategories,
 };
