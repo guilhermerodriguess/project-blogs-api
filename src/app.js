@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
+const validateJWT = require('./auth/validateJWT');
 // ...
 
 const app = express();
@@ -17,6 +18,8 @@ const apiRoutes = express.Router();
 
 apiRoutes.post('/user', routes.createUser);
 apiRoutes.post('/login', routes.login);
+apiRoutes.get('/user', validateJWT, routes.getUsers);
+apiRoutes.get('/user/:id', validateJWT, routes.getByUserId);
 
 app.use(apiRoutes);
 
