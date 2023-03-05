@@ -1,8 +1,6 @@
 require('dotenv/config');
-const jwt = require('jsonwebtoken');
+const { createToken } = require('../auth/createTokenJWT');
 const { userService } = require('../services');
-
-const secret = process.env.JWT_SECRET;
 
 const validateDisplayName = (displayName, res) => {
     if (!displayName || displayName.length < 8) {
@@ -61,12 +59,9 @@ module.exports = async (req, res) => {
 
         await userService.createUser({ email, password, displayName, image });
 
-        const jwtConfig = {
-            expiresIn: '7d',
-            algorithm: 'HS256',
-          };
+        const { password: _, ...userWithoutPassword } = emailExist.dataValues;
 
-        const token = jwt.sign({ data: { emailId: email.id } }, secret, jwtConfig);
+        const token = createToken(userWithoutPassword);
 
         res.status(201).json({ token });
     } catch (err) {

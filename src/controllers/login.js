@@ -1,8 +1,5 @@
-require('dotenv/config');
-const jwt = require('jsonwebtoken');
+const { createToken } = require('../auth/createTokenJWT');
 const { userService } = require('../services');
-
-const secret = process.env.JWT_SECRET;
 
 const validateBody = (body, res) => {
     const { email, password } = body;
@@ -38,12 +35,9 @@ module.exports = async (req, res) => {
 
         if (!validateEmailOrPassword(emailLogin, password, res)) return;
 
-        const jwtConfig = {
-            expiresIn: '7d',
-            algorithm: 'HS256',
-          };
+        const { password: _, ...userWithoutPassword } = emailLogin.dataValues;
 
-        const token = jwt.sign({ data: { emailId: emailLogin.dataValues.id } }, secret, jwtConfig);
+        const token = createToken(userWithoutPassword);
 
         res.status(200).json({ token });
     } catch (err) {

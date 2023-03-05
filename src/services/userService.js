@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Category } = require('../models');
 
 const createUser = ({ email, password, displayName, image }) => 
     User.create({ email, password, displayName, image });
@@ -18,9 +18,15 @@ const getByUserId = async (id) => {
     return user;
 };
 
+const createCategory = ({ name }) => Category.create({ name });
+
+const getIdByCategoryName = (name) => Category.findOne({ where: { name } });
+
 module.exports = {
     createUser,
     getByEmail,
     getUsers,
     getByUserId,
+    createCategory,
+    getIdByCategoryName,
 };
