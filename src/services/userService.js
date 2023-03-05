@@ -10,7 +10,10 @@ const getUsers = () => User.findAll({
 });
 
 const getByUserId = async (id) => {
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(
+        id,
+        { attributes: { exclude: ['password'] } },
+    );
 
     return user;
 };
