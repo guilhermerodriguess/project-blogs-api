@@ -4,7 +4,7 @@
  * @param {import('sequelize').DataTypes} DataTypes 
  */
 module.exports = (sequelize, DataTypes) => {
-    const Users = sequelize.define('User', {
+    const User = sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true,
     });
 
-    Users.associate = (models) => {
-        Users.hasMany(models.BlogPost, {
+    User.associate = (models) => {
+        User.hasMany(models.BlogPost, {
             foreignKey: 'userId', as: 'blog_posts'
         })
     }
 
-    return Users
+    return User
 }

@@ -4,7 +4,7 @@
  * @param {import('sequelize').DataTypes} DataTypes 
  */
 module.exports = (sequelize, DataTypes) => {
-    const Categories = sequelize.define('Category', {
+    const Category = sequelize.define('Category', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -14,5 +14,5 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
         underscored: true,
     });
-    return Categories
+    return Category;
 }
