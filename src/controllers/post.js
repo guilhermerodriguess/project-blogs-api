@@ -24,7 +24,7 @@ const checkCategory = (id1, id2, res) => {
 module.exports = async (req, res) => {
     try {
         const { title, content, categoryIds } = req.body;
-        const userId = req.data.emailId;
+        const userId = req.data.id;
 
         if (!missArguments(req.body, res)) return;
         
