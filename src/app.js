@@ -23,6 +23,7 @@ apiRoutes.get('/user/:id', validateToken, routes.getByUserId);
 apiRoutes.post('/categories', validateToken, routes.createCategory);
 apiRoutes.get('/categories', validateToken, routes.getCategories);
 apiRoutes.post('/post', validateToken, routes.post);
+apiRoutes.get('/post', validateToken, routes.getPost);
 
 app.use(apiRoutes);
 

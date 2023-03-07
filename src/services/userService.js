@@ -27,7 +27,11 @@ const getCategories = () => Category.findAll();
 const post = ({ title, content, categoryIds, userId }) => 
     BlogPost.create({ title, content, categoryIds, userId });
 
-const getPosts = () => BlogPost.findAll();
+const getPost = async () => BlogPost.findAll({
+    include: [{ 
+        model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories' }],
+});
 
 const getPostsByTitle = (title) => BlogPost.findAll({ where: { title } });
 
@@ -51,7 +55,7 @@ module.exports = {
     getIdByCategoryName,
     getCategories,
     post,
-    getPosts,
+    getPost,
     getPostsByTitle,
     getCategoriesById,
     postPostCategory,
