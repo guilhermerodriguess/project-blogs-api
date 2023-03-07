@@ -24,6 +24,7 @@ apiRoutes.post('/categories', validateToken, routes.createCategory);
 apiRoutes.get('/categories', validateToken, routes.getCategories);
 apiRoutes.post('/post', validateToken, routes.post);
 apiRoutes.get('/post', validateToken, routes.getPost);
+apiRoutes.get('/post/:id', validateToken, routes.getPostById);
 
 app.use(apiRoutes);
 
