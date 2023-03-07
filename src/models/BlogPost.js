@@ -1,3 +1,5 @@
+
+
 /**
  * 
  * @param {import('sequelize').Sequelize} sequelize 
@@ -13,10 +15,17 @@ module.exports = (sequelize, DataTypes) => {
         content: DataTypes.STRING,
         userId: {
             type: DataTypes.INTEGER,
-            foreignKey: true
+            foreignKey: true,
+            defaultValue: 1
         },
-        published: DataTypes.DATE,
-        updated: DataTypes.DATE
+        published: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        },
+        updated: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        }
     }, {
         timestamps: false,
         underscored: true,
