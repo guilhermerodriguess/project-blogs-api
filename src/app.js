@@ -26,6 +26,7 @@ apiRoutes.post('/post', validateToken, routes.post);
 apiRoutes.get('/post', validateToken, routes.getPost);
 apiRoutes.get('/post/:id', validateToken, routes.getPostById);
 apiRoutes.put('/post/:id', validateToken, routes.putPostById);
+apiRoutes.delete('/post/:id', validateToken, routes.deletePost);
 
 app.use(apiRoutes);
 
