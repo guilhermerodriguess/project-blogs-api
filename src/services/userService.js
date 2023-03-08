@@ -69,6 +69,11 @@ const deletePost = async (id) => {
     return postDelete;
 };
 
+const deleteMe = async (id) => {
+    const userDelete = await User.destroy({ where: { id } });
+    return userDelete;
+};
+
 module.exports = {
     createUser,
     getByEmail,
@@ -85,4 +90,5 @@ module.exports = {
     getPostById,
     putPostById,
     deletePost,
+    deleteMe,
 };
