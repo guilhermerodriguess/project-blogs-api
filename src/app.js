@@ -22,6 +22,7 @@ apiRoutes.get('/user', validateToken, routes.getUsers);
 apiRoutes.get('/user/:id', validateToken, routes.getByUserId);
 apiRoutes.post('/categories', validateToken, routes.createCategory);
 apiRoutes.get('/categories', validateToken, routes.getCategories);
+apiRoutes.get('/post/search', validateToken, routes.getPostByTerm);
 apiRoutes.post('/post', validateToken, routes.post);
 apiRoutes.get('/post', validateToken, routes.getPost);
 apiRoutes.get('/post/:id', validateToken, routes.getPostById);
